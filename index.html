@@ -1,547 +1,954 @@
-<script>
-  // BASE DE PRODUTOS
-  const products = [
-    // ELETRÔNICOS (1 a 10)
-    { id: 1, category: "eletronicos", title: "Fone de Ouvido Bluetooth 5.3 HiFi Dobrável Over-Ear", shortDescription: "Som Estéreo HiFi, Bateria de 10H e Graves Potentes.", fullDescription: "Fone Dobrável Over-Ear com Som Estéreo HiFi, Bateria de 10H, Graves Potentes, Arco Flexível e Chamadas Mãos-Livres.", price: 59.00, rating: 4.8, salesCount: 890, image: "fone1.jpg" },
-    { id: 2, category: "eletronicos", title: "Fone de Ouvido Sem Fio BETTDOW TWS Bluetooth 5.3", shortDescription: "Intra-auricular Bluetooth 5.3 para Android e iOS.", fullDescription: "Fone Intra-auricular TWS com Bluetooth 5.3, compatível com Android e iOS.", price: 52.04, rating: 4.7, salesCount: 1420, image: "fone2.jpg" },
-    { id: 3, category: "eletronicos", title: "Smart TV AOC Roku 32\" DLED (32S5155/78)", shortDescription: "Tela de 32 polegadas com sistema Roku TV integrado.", fullDescription: "Smart TV AOC Roku 32\" DLED Modelo 32S5155/78, com sistema Roku TV integrado.", price: 1026.85, rating: 4.9, salesCount: 530, image: "tv.jpg" },
-    { id: 4, category: "eletronicos", title: "Console PlayStation 5 Slim Digital Core 825GB", shortDescription: "Edição Digital Branco com 1 Controle Sem Fio DualSense.", fullDescription: "Console PlayStation 5 Slim Digital Core com 825GB de armazenamento e 1 Controle Sem Fio DualSense.", price: 1500.00, rating: 5.0, salesCount: 610, image: "ps5.jpg" },
-    { id: 5, category: "eletronicos", title: "Smartphone Xiaomi Poco X8 Pro Max 5G", shortDescription: "12GB RAM, NFC e Câmera 50MP 4K.", fullDescription: "Smartphone Xiaomi Poco X8 Pro Max 5G com 256GB / 512GB, 12GB RAM, NFC e Câmera 50MP 4K.", price: 500.00, rating: 4.9, salesCount: 780, image: "xiaomi.jpg" },
-    { id: 6, category: "eletronicos", title: "Tablet Hancdon S12 Plus 12,8\" 5G", shortDescription: "16GB RAM + 512GB ROM, Tela OLED 120Hz.", fullDescription: "Tablet Hancdon S12 Plus 12,8\" FHD, 16GB RAM + 512GB ROM, Tela OLED 120Hz, Bateria 8800mAh, Android 15.", price: 879.00, rating: 4.8, salesCount: 950, image: "tablet.jpg" },
-    { id: 7, category: "eletronicos", title: "Caixa de Som Bluetooth JBL Boombox 4", shortDescription: "Potência de 210W e resistente à água.", fullDescription: "Caixa de som Bluetooth JBL Boombox 4 com incrível potência de 210W e proteção contra água.", price: 459.90, rating: 4.9, salesCount: 1120, image: "jbl.jpg" },
-    { id: 8, category: "eletronicos", title: "Projetor BETTDOW Full HD 1080P (Compatível com 4K)", shortDescription: "Modelo AC1041, Wi-Fi 6, Bluetooth 5.0.", fullDescription: "Projetor BETTDOW Full HD 1080P (Compatível com 4K) Modelo AC1041, Wi-Fi 6, Bluetooth 5.0.", price: 150.00, rating: 4.7, salesCount: 430, image: "projetor.jpg" },
-    { id: 9, category: "eletronicos", title: "Ar-Condicionado Split Inverter Philco 9000 BTUs", shortDescription: "Frio, Modelo PAC9FB, 220V, Inverter.", fullDescription: "Ar-Condicionado Split Inverter Philco 9000 BTUs Frio, Modelo PAC9FB, 220V.", price: 800.00, rating: 4.8, salesCount: 310, image: "ar.jpg" },
-    { id: 10, category: "eletronicos", title: "Computador Completo TOB Intel Core i5", shortDescription: "Intel Core i5, SSD 120GB, 8GB RAM, Win 10 Pro.", fullDescription: "Computador Completo TOB com processador Intel Core i5, SSD 120GB, 8GB RAM e Windows 10 Pro.", price: 859.03, rating: 4.6, salesCount: 1250, image: "pc.jpg" },
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Store - Produtos & PIX</title>
 
-    // PERFUMES (11 a 20)
-    { id: 11, category: "perfumes", title: "Eau de Miyako (100 ml) - LAB 8", shortDescription: "LAB 8 - Elegância e sofisticação marcante.", fullDescription: "Sua fragrância sofisticada combina notas de alta fixação para momentos marcantes.", price: 50.00, rating: 4.9, salesCount: 850, image: "per1.jpg" },
-    { id: 12, category: "perfumes", title: "Blue de LAB 8 (100 ml) - LAB 8", shortDescription: "LAB 8 - Refrescância com fundo amadeirado.", fullDescription: "Perfeito para o uso diário ou eventos especiais, oferecendo ótimo desempenho.", price: 45.00, rating: 4.8, salesCount: 1120, image: "per2.jpg" },
-    { id: 13, category: "perfumes", title: "Perfume de Nicho Vision (100 ml) - LAB 8", shortDescription: "LAB 8 - Linha Nicho exclusiva.", fullDescription: "Para quem busca exlusividade e alta perfumaria com acordes refinados.", price: 49.99, rating: 5.0, salesCount: 430, image: "per3.jpg" },
-    { id: 14, category: "perfumes", title: "Perfume de Nicho Effervescent (100 ml) - LAB 8", shortDescription: "LAB 8 - Fragrância vibrante e envolvente.", fullDescription: "Notas efervescentes e marcantes com projeção surpreendente.", price: 69.99, rating: 4.9, salesCount: 760, image: "per4.jpg" },
-    { id: 15, category: "perfumes", title: "The Wave (100 ml) - FLUY", shortDescription: "FLUY - Frescor moderno e enérgico.", fullDescription: "Sentimento de liberdade e frescor constante para seu dia.", price: 166.99, rating: 4.7, salesCount: 310, image: "per5.jpg" },
-    { id: 16, category: "perfumes", title: "Natura Homem Sagaz (100 ml) - Natura", shortDescription: "Natura - Um clássico sedutor.", fullDescription: "Combinação de notas amadeiradas com o calor das pimentas.", price: 29.90, rating: 4.8, salesCount: 1520, image: "per6.jpg" },
-    { id: 17, category: "perfumes", title: "Lattafa Khamrah Eau de Parfum (100 ml) - Lattafa", shortDescription: "Lattafa - Perfumaria árabe gourmand.", fullDescription: "Notas quentes de especiarias, baunilha e tâmaras.", price: 40.50, rating: 5.0, salesCount: 940, image: "per7.jpg" },
-    { id: 18, category: "perfumes", title: "Asad Elixir Lattafa Eau de Parfum (100 ml) - Lattafa", shortDescription: "Lattafa - Intenso e misterioso.", fullDescription: "Presença marcante com notas amadeiradas e especiarias árabes.", price: 59.90, rating: 4.9, salesCount: 830, image: "per8.jpg" },
-    { id: 19, category: "perfumes", title: "Special Oud Al Wataniah (100 ml) - Al Wataniah", shortDescription: "Al Wataniah - O luxo do Oud oriental.", fullDescription: "Mistura tradicional do Oud árabe com um toque moderno.", price: 60.00, rating: 4.8, salesCount: 610, image: "per9.jpg" },
-    { id: 20, category: "perfumes", title: "Rasasi Hawas Black Original (100 ml) - Rasasi", shortDescription: "Rasasi - O poderoso Hawas Black.", fullDescription: "Projeção extrema e rastro inconfundível para marcar presença.", price: 49.90, rating: 5.0, salesCount: 1100, image: "per10.jpg" },
+  <!-- ========================================================= -->
+  <!-- META TAGS DE PRÉ-VISUALIZAÇÃO (OPEN GRAPH / WHATSAPP)    -->
+  <!-- ========================================================= -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tech Store - Produtos & PIX" />
+  <meta property="og:description" content="As melhores ofertas em Eletrônicos, Perfumes, Moda e Calçados com desconto exclusivo no PIX e envio rápido!" />
+  <meta property="og:url" content="https://traphorde6-ui.github.io/TechStore-/" />
+  <!-- Altere o link abaixo para a URL exata da sua imagem de capa/preview -->
+  <meta property="og:image" content="https://traphorde6-ui.github.io/TechStore-/banner-preview.jpg" />
+  <meta property="og:image:secure_url" content="https://traphorde6-ui.github.io/TechStore-/banner-preview.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Tech Store - Produtos & PIX" />
 
-    // ROUPAS / MODA
-    { 
-      id: 21, 
-      category: "roupas", 
-      title: "SUETER TRICOT CANELADO GOLA CARECA INVERNO Slim Fit", 
-      shortDescription: "Tricot Canelado Slim Fit Material de Luxo com Alta Qualidade.", 
-      fullDescription: "Suéter Tricot Canelado com Gola Careca, caimento Slim Fit que valoriza o corpo. Confeccionado em material de luxo com maciez e alta durabilidade.", 
-      price: 59.90, 
-      oldPrice: 139.90,
-      rating: 4.5, 
-      salesCount: 520, 
-      image: "sue.jpg",
-      gallery: [
-        { color: "Azul Marinho", url: "sue1.jpg" },
-        { color: "Off-White", url: "sue2.jpg" },
-        { color: "Verde Militar", url: "sue3.jpg" }
-      ],
-      sizes: ["P", "M", "G", "GG"]
-    },
-    { 
-      id: 22, 
-      category: "roupas", 
-      title: "Camisa Social Masculina Manga Curta De Botão Lisa Shirt", 
-      shortDescription: "Estilo Old Money e Casual com Caimento Leve e Sofisticado.", 
-      fullDescription: "Camisa Social Masculina de Manga Curta com botões, estilo casual/old money ideal para dias quentes e ocasiões especiais. Tecido leve de alta qualidade com caimento impecável.", 
-      price: 43.89, 
-      oldPrice: 79.90,
-      rating: 4.6, 
-      salesCount: 37300, 
-      image: "so.jpg",
-      gallery: [
-        { color: "Preto Clássico", url: "so1.jpg" },
-        { color: "Verde Militar", url: "so2.jpg" },
-        { color: "Vermelho Vinho", url: "so3.jpg" }
-      ],
-      sizes: ["P", "M", "G", "GG"]
-    },
-    { 
-      id: 23, 
-      category: "roupas", 
-      title: "Brossard Camisa Social Masculina Elástica Manga Comprida", 
-      shortDescription: "Tecido elástico de alta performance, caimento perfeito e elegante.", 
-      fullDescription: "Camisa social masculina Brossard de manga comprida com alta elasticidade (tecido stretch), modelagem slim fit que proporciona máximo conforto, toque macio e visual sofisticado para o dia a dia e eventos sociais.", 
-      price: 69.90, 
-      oldPrice: 198.00,
-      rating: 4.8, 
-      salesCount: 10700, 
-      image: "bro.jpg",
-      gallery: [
-        { color: "Preto (C003-Preto)", url: "bro1.jpg" },
-        { color: "Azul Marinho (C003-Azul)", url: "bro2.jpg" },
-        { color: "Branco Clássico", url: "bro3.jpg" }
-      ],
-      sizes: ["P", "M", "G", "GG", "XG"]
-    },
-    { 
-      id: 45, 
-      category: "roupas", 
-      title: "Camiseta Masculina de Tricot Básica Estilo Slim", 
-      shortDescription: "Textura canelada com nervuras verticais e caimento ajustado moderno.", 
-      fullDescription: "Camiseta Masculina Básica confeccionada em tricot leve com textura canelada em nervuras verticais. Modelagem Slim Fit que se ajusta perfeitamente ao corpo, combinando sofisticação, conforto e versatilidade.", 
-      price: 49.90, 
-      oldPrice: 129.90,
-      rating: 4.8, 
-      salesCount: 840, 
-      image: "tri.jpg",
-      gallery: [
-        { color: "Marsala", url: "tri1.jpg" },
-        { color: "Marrom", url: "tri2.jpg" },
-        { color: "Azul Marinho", url: "tri3.jpg" }
-      ],
-      sizes: ["P", "M", "G", "GG"]
-    },
-    { 
-      id: 24, 
-      category: "roupas", 
-      title: "Jaqueta Masculina Premium Conforto e Estilo", 
-      shortDescription: "Design sofisticado com toque aveludado e bolsos frontais.", 
-      fullDescription: "Jaqueta masculina de corte moderno com caimento impecável e tecido estruturado de alta densidade. Possui fechamento frontal versátil, bolsos funcionais no peito e acabamento premium para manter você aquecido com máximo conforto e elegância em qualquer ocasião.", 
-      price: 69.90, 
-      oldPrice: 249.97,
-      rating: 4.8, 
-      salesCount: 552, 
-      image: "ja.jpg",
-      gallery: [
-        { color: "Beige / Caqui", url: "ja1.jpg" },
-        { color: "Black", url: "ja2.jpg" },
-        { color: "Marrom", url: "ja3.jpg" }
-      ],
-      sizes: ["P", "M", "G", "GG"]
-    },
-    { 
-      id: 34, 
-      category: "roupas", 
-      title: "Mochila Tática Grande 50L Camping Trilhas Viagem Resistente Impermeável Masculina Mult...", 
-      shortDescription: "Capacidade de 50L, material impermeável ultra resistente e sistema MOLLE.", 
-      fullDescription: "Mochila Tática Militar de alta capacidade (50 Litros), ideal para camping, trilhas, viagens e uso diário. Confeccionada em tecido impermeável de alta resistência, conta com múltiplos compartimentos com zíper reforçado, velcros para patches decorativos (acompanha bandeiras) e travas de segurança ajustáveis.", 
-      price: 59.99, 
-      oldPrice: 159.90,
-      rating: 4.8, 
-      salesCount: 1969, 
-      image: "mo.jpg",
-      gallery: [
-        { color: "Preto", url: "mo1.jpg" },
-        { color: "Verde", url: "mo2.jpg" },
-        { color: "Marrom", url: "mo3.jpg" }
-      ]
-    },
+  <!-- Meta Tags para Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tech Store - Produtos & PIX">
+  <meta name="twitter:description" content="As melhores ofertas em Eletrônicos, Perfumes, Moda e Calçados com desconto exclusivo no PIX!">
+  <meta name="twitter:image" content="https://traphorde6-ui.github.io/TechStore-/banner-preview.jpg">
 
-    // TÊNIS E CALÇADOS
-    { 
-      id: 46, 
-      category: "tenis", 
-      title: "Coturno Bota Militar Masculino Areia Couro Legítimo Impermeável", 
-      shortDescription: "Couro legítimo, resistente à água e solado tratorado antiderrapante.", 
-      fullDescription: "Coturno Bota Militar Masculino confeccionado em couro legítimo de alta resistência. Solado tratorado antiderrapante em borracha reforçada, forro acolchoado respirável e acabamento impermeável ideal para uso tático, trabalho pesado ou aventuras ao ar livre.", 
-      price: 59.90, 
-      oldPrice: 129.90, 
-      rating: 4.9, 
-      salesCount: 1840, 
-      image: "bota1.jpg", 
-      sizes: ["40", "41", "42", "43", "44", "45", "46", "47", "48"] 
-    },
-    { 
-      id: 47, 
-      category: "tenis", 
-      title: "Tênis Masculino Knit Calce Fácil Slip On Palmilha Gel", 
-      shortDescription: "Tecido respirável Knit, sistema slip on sem cadarço e palmilha macia.", 
-      fullDescription: "Tênis Masculino Knit Calce Fácil Slip On super prático e leve. Cabedal confeccionado em tecido tricotado respirável que se ajusta ao pé, equipado com palmilha anatômica em gel para conforto absoluto ao caminhar.", 
-      price: 77.99, 
-      oldPrice: 129.90, 
-      rating: 4.8, 
-      salesCount: 2950, 
-      image: "bota2.jpg", 
-      sizes: ["40", "41", "42", "43", "44", "45", "46", "47", "48"] 
-    },
-    { 
-      id: 48, 
-      category: "tenis", 
-      title: "Tênis Casual Masculino e Feminino CMP Estiloso e Confortável", 
-      shortDescription: "Design moderno Unissex, leve e extremamente confortável.", 
-      fullDescription: "Tênis Casual CMP Unissex com design versátil que combina perfeitamente com qualquer estilo. Possui estrutura reforçada com acabamento macio e solado leve em EVA que garante excelente absorção de impactos.", 
-      price: 58.44, 
-      oldPrice: 99.90, 
-      rating: 4.7, 
-      salesCount: 3410, 
-      image: "bota3.jpg", 
-      sizes: ["40", "41", "42", "43", "44", "45", "46", "47", "48"] 
-    },
-    { 
-      id: 49, 
-      category: "tenis", 
-      title: "Tênis Masculino Casual Sneaker Esporte Fino", 
-      shortDescription: "Visual elegante esporte fino, perfeito para o trabalho e momentos casuais.", 
-      fullDescription: "Tênis Sneaker Casual Masculino com acabamento esporte fino sofisticado. Confeccionado em material sintético nobre, com costuras reforçadas e solado reto para trazer a mistura perfeita entre elegância e praticidade.", 
-      price: 62.90, 
-      oldPrice: 119.90, 
-      rating: 4.8, 
-      salesCount: 1520, 
-      image: "bota4.jpg", 
-      sizes: ["40", "41", "42", "43", "44", "45", "46", "47", "48"] 
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- QR Code JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-  ];
-
-  // HELPER PARA ÍCONES SEGUROS
-  function safeCreateIcons() {
-    if (typeof lucide !== 'undefined' && lucide.createIcons) {
-      lucide.createIcons();
+    @keyframes popIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      70% { transform: scale(1.03); }
+      100% { transform: scale(1); opacity: 1; }
     }
-  }
-
-  // GERADOR AUTOMÁTICO DE FEEDBACKS / AVALIAÇÕES
-  function generateProductReviews() {
-    const reviewNames = [
-      "Carlos Silva", "Ana Souza", "Fernanda Lima", "Lucas Oliveira", "Mariana Costa",
-      "Gabriel Santos", "Juliana Pereira", "Rodrigo Alves", "Camila Martins", "Thiago Rocha",
-      "Beatriz Gomes", "Rafael Melo", "Patrícia Ribeiro", "Diego Fernandes", "Amanda Carvalho",
-      "Bruno Teixeira", "Vanessa Barbosa", "Felipe Nascimento", "Aline Santos", "Marcelo Dias"
-    ];
-
-    const reviewCommentsGeneral = [
-      "Excelente produto! Chegou antes do prazo e a qualidade superou todas as minhas expectativas.",
-      "Muito bom, valeu cada centavo. Veio super bem embalado e idêntico ao anúncio.",
-      "Gostei demais! Comprarei novamente na loja com certeza, atendimento de primeira.",
-      "Produto sensacional! Qualidade impecável e muito bonito.",
-      "Ótimo custo-benefício. Recomendo a todos da comunidade!"
-    ];
-
-    const perfumeComments = [
-      "Fragrância surreal! A fixação na minha pele passa de 8 horas com tranquilidade.",
-      "Que perfume espetacular! Rastro marcante, recebi vários elogios já no primeiro dia de uso.",
-      "Aroma muito sofisticado e elegante. Veio bem lacrado na caixa original, nota 10!",
-      "Cheiro viciante! O frasco é lindo e a projeção nas primeiras 2 horas é excelente."
-    ];
-
-    const timeAgos = ["há 1 dia", "há 2 dias", "há 3 dias", "há 5 dias", "há 1 semana", "há 2 semanas"];
-
-    products.forEach(product => {
-      let feedbackCount = product.category === "perfumes" ? 15 : 10;
-      let commentsList = product.category === "perfumes" ? perfumeComments : reviewCommentsGeneral;
-
-      product.reviews = [];
-
-      for (let i = 0; i < feedbackCount; i++) {
-        const randomName = reviewNames[Math.floor(Math.random() * reviewNames.length)];
-        const randomComment = commentsList[Math.floor(Math.random() * commentsList.length)];
-        const randomTime = timeAgos[Math.floor(Math.random() * timeAgos.length)];
-        const randomStars = Math.random() > 0.2 ? 5 : 4;
-
-        product.reviews.push({
-          name: randomName,
-          comment: randomComment,
-          date: randomTime,
-          rating: randomStars
-        });
-      }
-    });
-  }
-
-  generateProductReviews();
-
-  let currentCategory = 'todos';
-  let cart = [];
-  let customerData = {};
-  let shippingCost = 0;
-  let shippingDays = 0;
-
-  let currentSlideIndex = 0;
-  let selectedSize = '';
-  let selectedColor = '';
-
-  function getStarsHTML(rating) {
-    const fullStars = Math.floor(rating);
-    let starsHTML = '';
-    for (let i = 0; i < 5; i++) {
-      starsHTML += i < fullStars 
-        ? `<i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400 inline"></i>`
-        : `<i data-lucide="star" class="w-3.5 h-3.5 text-gray-300 inline"></i>`;
+    @keyframes pulseSoft {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
     }
-    return starsHTML;
-  }
-
-  function filterCategory(category) {
-    currentCategory = category;
-    document.querySelectorAll('.cat-btn').forEach(btn => {
-      btn.className = 'cat-btn bg-white text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 border border-gray-200 px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 shadow-sm hover:scale-105 active:scale-95';
-    });
-    const activeBtn = document.getElementById(`cat-${category}`);
-    if (activeBtn) {
-      activeBtn.className = 'cat-btn bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 shadow-md hover:scale-105 active:scale-95';
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+      50% { box-shadow: 0 0 20px 6px rgba(79, 70, 229, 0.3); }
     }
-    renderProducts();
-  }
-
-  function renderProducts() {
-    const grid = document.getElementById('product-grid');
-    if (!grid) return;
-
-    const filtered = currentCategory === 'todos' ? products : products.filter(p => p.category === currentCategory);
-
-    if (filtered.length === 0) {
-      grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-12">Nenhum produto encontrado.</p>`;
-      return;
+    @keyframes pulseGlowEmerald {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      50% { box-shadow: 0 0 22px 6px rgba(16, 185, 129, 0.4); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes arrowMove {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
     }
 
-    grid.innerHTML = filtered.map((product) => `
-      <div class="group bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up">
-        <div class="relative cursor-pointer overflow-hidden bg-white aspect-square flex items-center justify-center p-3" onclick="openProductModal(${product.id})">
-          ${product.oldPrice ? `<span class="absolute top-3 left-3 bg-red-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-full shadow-md z-10">OFERTA</span>` : ''}
-          <img src="${product.image}" alt="${product.title}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+    .animate-fade-in-up {
+      animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .animate-pop-in {
+      animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    .animate-pulse-soft {
+      animation: pulseSoft 2s ease-in-out infinite;
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 2.5s infinite;
+    }
+    .animate-pulse-glow-emerald {
+      animation: pulseGlowEmerald 2.5s infinite;
+    }
+    .animate-arrow {
+      animation: arrowMove 1.5s ease-in-out infinite;
+    }
+
+    .btn-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shimmer::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent, rgba(255,255,255,0.25), transparent);
+      transform: rotate(30deg);
+      transition: all 0.6s ease;
+    }
+    .btn-shimmer:hover::after {
+      left: 100%;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-gray-800 font-sans min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+  <!-- HEADER -->
+  <header class="bg-indigo-600/90 backdrop-blur-md text-white sticky top-0 z-40 shadow-lg border-b border-indigo-500/30 transition-all">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex justify-between items-center">
+      <h1 class="text-2xl font-black tracking-tight flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform" onclick="filterCategory('todos')">
+        <div class="bg-white text-indigo-600 p-2 rounded-xl shadow-md animate-float">
+          <i data-lucide="shopping-bag" class="w-6 h-6"></i>
         </div>
-        <div class="p-5 flex flex-col flex-1">
-          <h4 onclick="openProductModal(${product.id})" class="text-base font-bold text-gray-800 mb-1 hover:text-indigo-600 cursor-pointer transition-colors line-clamp-2">${product.title}</h4>
-          <div class="flex items-center gap-1.5 mb-2 text-xs text-gray-500">
-            <span class="flex items-center gap-0.5">${getStarsHTML(product.rating)}</span>
-            <span class="font-bold text-gray-700">${product.rating}</span>
-            <span>(${product.reviews ? product.reviews.length : product.salesCount} avaliações)</span>
-          </div>
-          <p class="text-gray-500 text-xs mb-4 flex-1 line-clamp-2">${product.shortDescription}</p>
-          <div class="flex items-center justify-between mt-auto pt-3 border-t border-gray-50">
-            <div>
-              ${product.oldPrice ? `<span class="text-xs text-gray-400 line-through block">R$ ${product.oldPrice.toFixed(2).replace('.', ',')}</span>` : '<span class="text-xs text-gray-400 block font-bold">À vista no PIX</span>'}
-              <span class="text-lg font-black text-indigo-600">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
-            </div>
-            <button onclick="openProductModal(${product.id})" class="btn-shimmer bg-indigo-600 hover:bg-indigo-700 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md active:scale-90">
-              <i data-lucide="eye" class="w-4 h-4"></i> Ver Opções
-            </button>
-          </div>
-        </div>
+        <span>Tech<span class="text-amber-400">Store</span></span>
+      </h1>
+
+      <button id="cart-btn" onclick="toggleCart()" class="group relative bg-indigo-700/80 hover:bg-indigo-800 p-2.5 rounded-2xl transition-all duration-300 flex items-center gap-2 px-4 shadow-md hover:shadow-indigo-500/20 active:scale-95">
+        <i data-lucide="shopping-cart" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+        <span class="font-bold hidden sm:inline">Carrinho</span>
+        <span id="cart-count" class="bg-amber-400 text-gray-900 font-black text-xs px-2 py-0.5 rounded-full shadow animate-pulse-soft">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- BANNER HERO -->
+  <section class="relative bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white py-14 px-4 text-center overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.15),transparent)] pointer-events-none"></div>
+    <div class="relative max-w-2xl mx-auto animate-fade-in-up">
+      <span class="inline-block bg-white/25 backdrop-blur-md text-white font-bold text-xs uppercase px-3 py-1 rounded-full mb-3 tracking-widest border border-white/20 shadow-sm animate-pulse-soft">
+        ⚡ Desconto Exclusivo no PIX
+      </span>
+      <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-3 drop-shadow-md">
+        As Melhores Ofertas Estão Aqui!
+      </h2>
+      <p class="text-indigo-100 max-w-xl mx-auto text-base md:text-lg font-medium opacity-90">
+        Navegue pelas categorias, confira as avaliações reais dos clientes e receba em casa com total segurança.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-4 py-10 flex-1 w-full">
+    <!-- BARRA DE CATEGORIAS -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-gray-200 scrollbar-none">
+      <button onclick="filterCategory('todos')" id="cat-todos" class="cat-btn bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 shadow-md hover:scale-105 active:scale-95">
+        🔥 Todos os Produtos
+      </button>
+      <button onclick="filterCategory('eletronicos')" id="cat-eletronicos" class="cat-btn bg-white text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 border border-gray-200 px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 shadow-sm hover:scale-105 active:scale-95">
+        <i data-lucide="cpu" class="w-4 h-4 inline mr-1"></i> Eletrônicos (10)
+      </button>
+      <button onclick="filterCategory('perfumes')" id="cat-perfumes" class="cat-btn bg-white text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 border border-gray-200 px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 shadow-sm hover:scale-105 active:scale-95">
+        <i data-lucide="sparkles" class="w-4 h-4 inline mr-1"></i> Perfumes (10)
+      </button>
+      <button onclick="filterCategory('roupas')" id="cat-roupas" class="cat-btn bg-white text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 border border-gray-200 px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 shadow-sm hover:scale-105 active:scale-95">
+        <i data-lucide="shirt" class="w-4 h-4 inline mr-1"></i> Moda / Roupas (6)
+      </button>
+      <button onclick="filterCategory('tenis')" id="cat-tenis" class="cat-btn bg-white text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 border border-gray-200 px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 shadow-sm hover:scale-105 active:scale-95">
+        <i data-lucide="footprints" class="w-4 h-4 inline mr-1"></i> Tênis e Calçados (4)
+      </button>
+    </div>
+
+    <!-- GRID DE PRODUTOS -->
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  </main>
+
+  <!-- MODAL DE DETALHES DO PRODUTO -->
+  <div id="product-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-all">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto animate-pop-in">
+      <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-800 p-2 rounded-full transition-all hover:rotate-90">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="product-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- MODAL DO CARRINHO / CHECKOUT -->
+  <div id="cart-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex justify-end transition-opacity">
+    <div class="bg-white w-full max-w-md h-full flex flex-col shadow-2xl p-6 overflow-y-auto transform transition-transform duration-300 animate-fade-in-up">
+      <div class="flex justify-between items-center border-b pb-4 mb-4">
+        <h3 id="modal-title" class="text-xl font-black flex items-center gap-2 text-gray-800">
+          <i data-lucide="shopping-cart" class="text-indigo-600"></i> Seu Carrinho
+        </h3>
+        <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-800 p-1 transition-colors">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
       </div>
-    `).join('');
-    safeCreateIcons();
-  }
 
-  function openProductModal(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-
-    currentSlideIndex = 0;
-    selectedSize = product.sizes ? product.sizes[0] : '';
-    
-    const gallery = product.gallery || [{ color: 'Padrão', url: product.image }];
-    selectedColor = gallery[0] ? gallery[0].color : '';
-
-    const modalContent = document.getElementById('product-modal-content');
-    if (!modalContent) return;
-
-    modalContent.innerHTML = `
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="flex flex-col gap-3">
-          <div class="relative overflow-hidden rounded-2xl border border-gray-100 bg-white group aspect-square flex items-center justify-center p-2">
-            <img id="modal-main-image" src="${gallery[0].url}" class="w-full h-full object-contain transition-all duration-300">
-            
-            ${gallery.length > 1 ? `
-              <button onclick="changeSlide(-1, ${product.id})" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-md backdrop-blur-sm transition-all">
-                <i data-lucide="chevron-left" class="w-5 h-5"></i>
-              </button>
-              <button onclick="changeSlide(1, ${product.id})" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-md backdrop-blur-sm transition-all">
-                <i data-lucide="chevron-right" class="w-5 h-5"></i>
-              </button>
-            ` : ''}
-
-            ${selectedColor ? `
-              <span id="slide-color-tag" class="absolute bottom-3 left-3 bg-black/70 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                Cor: ${selectedColor}
-              </span>
-            ` : ''}
+      <!-- ETAPA 1: ITENS DO CARRINHO -->
+      <div id="step-cart" class="flex-1 flex flex-col justify-between">
+        <div id="cart-items" class="flex-1 overflow-y-auto divide-y"></div>
+        <div class="border-t pt-4 mt-auto">
+          <div class="flex justify-between text-lg font-black mb-4">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal" class="text-indigo-600">R$ 0,00</span>
           </div>
-
-          ${gallery.length > 1 ? `
-            <div class="flex gap-2 overflow-x-auto pb-1">
-              ${gallery.map((img, idx) => `
-                <button onclick="setSlide(${idx}, ${product.id})" id="thumb-${idx}" class="thumb-btn border-2 ${idx === 0 ? 'border-indigo-600 scale-105' : 'border-transparent'} rounded-xl overflow-hidden flex-shrink-0 transition-all bg-white p-1">
-                  <img src="${img.url}" class="w-14 h-14 object-contain">
-                </button>
-              `).join('')}
-            </div>
-          ` : ''}
-        </div>
-
-        <div class="flex flex-col justify-between">
-          <div>
-            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full uppercase tracking-wider">
-              ${product.category === 'roupas' ? 'Moda Masculina' : product.category === 'tenis' ? 'Tênis e Calçados' : product.category === 'perfumes' ? 'Perfumes Importados' : product.category}
-            </span>
-            <h3 class="text-xl font-black text-gray-800 mt-2">${product.title}</h3>
-            
-            <div class="flex items-baseline gap-2 my-2">
-              <span class="text-3xl font-black text-indigo-600">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
-              ${product.oldPrice ? `<span class="text-sm text-gray-400 line-through">R$ ${product.oldPrice.toFixed(2).replace('.', ',')}</span>` : ''}
-            </div>
-
-            <p class="text-gray-600 text-xs sm:text-sm mb-4 leading-relaxed">${product.fullDescription}</p>
-
-            ${product.sizes ? `
-              <div class="mb-4">
-                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Selecione o Tamanho:</label>
-                <div class="flex gap-2 flex-wrap max-h-36 overflow-y-auto p-1">
-                  ${product.sizes.map(size => `
-                    <button onclick="selectSize('${size}')" id="size-btn-${size}" class="size-btn border-2 ${size === selectedSize ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-200 text-gray-700 hover:border-gray-300'} font-bold text-xs py-2 px-3.5 rounded-xl transition-all active:scale-95">
-                      ${size}
-                    </button>
-                  `).join('')}
-                </div>
-              </div>
-            ` : ''}
-          </div>
-
-          <button onclick="addCustomToCart(${product.id})" class="btn-shimmer animate-pulse-glow w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3.5 rounded-2xl font-black flex justify-center items-center gap-2 shadow-lg hover:shadow-indigo-500/40 transition-all active:scale-95">
-            <i data-lucide="shopping-cart"></i> Adicionar ao Carrinho
+          <!-- BOTÃO AVANÇAR PARA ENTREGA COM ANIMAÇÃO SHIMMER E SETA -->
+          <button id="next-to-address-btn" onclick="goToAddressStep()" class="btn-shimmer animate-pulse-glow w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3.5 rounded-2xl font-extrabold flex justify-center items-center gap-2 shadow-lg hover:shadow-indigo-500/40 transition-all active:scale-95 disabled:opacity-50 disabled:pointer-events-none disabled:animate-none" disabled>
+            Avançar para Entrega <i data-lucide="arrow-right" class="w-5 h-5 animate-arrow"></i>
           </button>
         </div>
       </div>
 
-      <div class="mt-8 border-t border-gray-100 pt-6">
-        <div class="flex items-center justify-between mb-4">
-          <h4 class="text-lg font-black text-gray-800 flex items-center gap-2">
-            <i data-lucide="message-square" class="text-indigo-600 w-5 h-5"></i>
-            Avaliações dos Clientes
-          </h4>
-          <span class="text-xs bg-indigo-50 text-indigo-700 font-extrabold px-3 py-1.5 rounded-full border border-indigo-100">
-            ${product.reviews ? product.reviews.length : 0} avaliações
-          </span>
-        </div>
-
-        <div class="space-y-3 max-h-64 overflow-y-auto pr-1">
-          ${product.reviews ? product.reviews.map(rev => `
-            <div class="bg-gray-50 p-3.5 rounded-2xl border border-gray-100 text-xs">
-              <div class="flex justify-between items-center mb-1.5">
-                <div class="flex items-center gap-2">
-                  <div class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-black flex items-center justify-center text-xs shadow-sm">
-                    ${rev.name.charAt(0)}
-                  </div>
-                  <span class="font-extrabold text-gray-800">${rev.name}</span>
-                </div>
-                <span class="text-[11px] text-gray-400 font-medium">${rev.date}</span>
-              </div>
-              <div class="flex items-center gap-1 mb-1">
-                ${getStarsHTML(rev.rating)}
-              </div>
-              <p class="text-gray-600 leading-relaxed">${rev.comment}</p>
+      <!-- ETAPA 2: FORMULÁRIO DE ENTREGA -->
+      <div id="step-address" class="flex-1 flex flex-col justify-between hidden">
+        <form id="address-form" onsubmit="openCheckout(event)" class="space-y-3 overflow-y-auto pr-1">
+          <div>
+            <label class="block text-xs font-bold text-gray-600 mb-1">Nome Completo *</label>
+            <input type="text" id="cust-name" required placeholder="Seu nome completo" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+          </div>
+          
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">WhatsApp / Telefone *</label>
+              <input type="tel" id="cust-phone" required placeholder="(00) 00000-0000" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
             </div>
-          `).join('') : '<p class="text-gray-400 text-xs">Nenhuma avaliação ainda.</p>'}
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">CEP *</label>
+              <input type="text" id="cust-cep" required placeholder="00000-000" onblur="fetchCEP(this.value)" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+            </div>
+          </div>
+
+          <!-- CARD DE ESTIMATIVA DE FRETE -->
+          <div id="shipping-info-box" class="hidden bg-indigo-50 border border-indigo-100 rounded-2xl p-3 my-2 animate-fade-in-up">
+            <div class="flex items-center gap-2 text-indigo-900 font-bold text-xs mb-1">
+              <i data-lucide="truck" class="w-4 h-4 text-indigo-600"></i>
+              <span>Cálculo de Envio (Via Correios/Transportadora)</span>
+            </div>
+            <div class="flex justify-between items-center text-xs text-gray-700 mt-2 bg-white p-2 rounded-xl border border-indigo-50">
+              <div>
+                <span class="text-gray-400 block text-[10px]">PRAZO DE ENTREGA</span>
+                <span id="shipping-days" class="font-extrabold text-indigo-900">-- dias úteis</span>
+              </div>
+              <div class="text-right">
+                <span class="text-gray-400 block text-[10px]">VALOR DO FRETE</span>
+                <span id="shipping-cost" class="font-extrabold text-emerald-600">R$ 0,00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <div class="col-span-2">
+              <label class="block text-xs font-bold text-gray-600 mb-1">Rua / Logradouro *</label>
+              <input type="text" id="cust-street" required placeholder="Ex: Av. Paulista" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">Número *</label>
+              <input type="text" id="cust-number" required placeholder="123" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">Complemento</label>
+              <input type="text" id="cust-comp" placeholder="Apt 42, Bloco B" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">Bairro *</label>
+              <input type="text" id="cust-neighborhood" required placeholder="Bairro" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <div class="col-span-2">
+              <label class="block text-xs font-bold text-gray-600 mb-1">Cidade *</label>
+              <input type="text" id="cust-city" required placeholder="Cidade" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">UF *</label>
+              <input type="text" id="cust-state" required maxlength="2" placeholder="SP" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm uppercase focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
+            </div>
+          </div>
+
+          <!-- RESUMO DE VALORES COM FRETE -->
+          <div class="border-t pt-3 mt-3 text-xs space-y-1">
+            <div class="flex justify-between text-gray-500">
+              <span>Subtotal dos produtos:</span>
+              <span id="checkout-subtotal">R$ 0,00</span>
+            </div>
+            <div class="flex justify-between text-gray-500">
+              <span>Frete:</span>
+              <span id="checkout-shipping">R$ 0,00</span>
+            </div>
+            <div class="flex justify-between text-base font-black text-indigo-600 pt-1 border-t">
+              <span>Total final:</span>
+              <span id="checkout-total">R$ 0,00</span>
+            </div>
+          </div>
+
+          <div class="pt-2 flex gap-2">
+            <button type="button" onclick="goToCartStep()" class="w-1/3 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-xl font-bold transition-all active:scale-95">
+              Voltar
+            </button>
+            <!-- BOTÃO IR PARA PIX COM ANIMAÇÃO EMERALD GLOW -->
+            <button type="submit" class="btn-shimmer animate-pulse-glow-emerald w-2/3 bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold flex justify-center items-center gap-2 shadow-lg hover:shadow-emerald-500/40 transition-all active:scale-95">
+              <i data-lucide="qr-code" class="animate-bounce"></i> Ir para PIX
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PIX -->
+  <div id="pix-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 text-center shadow-2xl relative max-h-[90vh] overflow-y-auto animate-pop-in">
+      <button onclick="closeCheckout()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-800 p-2 rounded-full transition-all hover:rotate-90">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="inline-flex p-3.5 bg-emerald-100 rounded-full text-emerald-600 mb-2 animate-bounce">
+        <i data-lucide="check-circle" class="w-10 h-10"></i>
+      </div>
+      <h3 class="text-2xl font-black text-gray-800">Pagamento via PIX</h3>
+      <p class="text-gray-500 text-xs sm:text-sm mt-1">Escaneie o QR Code abaixo no seu aplicativo bancário para concluir a compra.</p>
+
+      <div id="delivery-summary" class="bg-indigo-50 text-indigo-900 rounded-2xl p-3.5 my-3 text-left text-xs border border-indigo-100"></div>
+
+      <div class="bg-gray-50 border rounded-2xl p-3 my-3">
+        <span class="text-xs text-gray-500 uppercase font-bold tracking-wider block">Valor Total do Pedido (com Frete)</span>
+        <span id="pix-amount" class="text-3xl font-black text-emerald-600">R$ 0,00</span>
+      </div>
+
+      <div class="flex justify-center my-3">
+        <div id="qrcode" class="p-3 bg-white border-2 border-indigo-100 rounded-2xl shadow-inner hover:scale-105 transition-transform"></div>
+      </div>
+
+      <div class="mt-3 text-left">
+        <label class="text-xs font-bold text-gray-600 block mb-1">Código PIX Copia e Cola:</label>
+        <div class="flex gap-2">
+          <input id="pix-code-input" type="text" readonly class="bg-gray-100 border text-xs text-gray-600 rounded-xl p-2.5 flex-1 select-all outline-none font-mono">
+          <button onclick="copyPixCode()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-4 py-2.5 rounded-xl font-bold flex items-center gap-1 transition-all active:scale-95 shadow-md">
+            <i data-lucide="copy" class="w-4 h-4"></i> Copiar
+          </button>
         </div>
       </div>
-    `;
 
-    const pModal = document.getElementById('product-modal');
-    if (pModal) pModal.classList.remove('hidden');
-    safeCreateIcons();
-  }
+      <div id="copy-toast" class="hidden mt-2 text-xs text-emerald-600 font-extrabold animate-pop-in">
+        ✓ Código PIX copiado para a área de transferência!
+      </div>
 
-  function changeSlide(direction, productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product || !product.gallery) return;
+      <div class="mt-5 pt-3 border-t">
+        <a id="whatsapp-btn" href="#" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-2xl text-xs font-extrabold flex justify-center items-center gap-2 shadow-lg hover:shadow-emerald-500/20 transition-all active:scale-95">
+          <i data-lucide="message-circle" class="w-4 h-4"></i> Enviar Comprovante / Pedido no WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
 
-    currentSlideIndex = (currentSlideIndex + direction + product.gallery.length) % product.gallery.length;
-    setSlide(currentSlideIndex, productId);
-  }
+  <!-- RODAPÉ -->
+  <footer class="bg-slate-900 text-gray-400 border-t border-slate-800 mt-12">
+    <div class="max-w-7xl mx-auto px-4 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
+        <div>
+          <h4 class="text-white font-bold text-base mb-3 flex items-center justify-center md:justify-start gap-2">
+            <i data-lucide="shield-check" class="text-indigo-400 w-5 h-5"></i> TechStore Oficial
+          </h4>
+          <p class="text-xs leading-relaxed text-slate-400">
+            TechStore Comercio Eletronico LTDA<br>
+            CNPJ: 00.123.456/0001-89<br>
+            Av. Paulista, 1000 - Bela Vista, São Paulo - SP<br>
+            Atendimento: contato@techstore.com.br
+          </p>
+        </div>
 
-  function setSlide(index, productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product || !product.gallery) return;
+        <div class="flex flex-col items-center justify-center">
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Segurança e Proteção</h4>
+          <div class="flex flex-wrap justify-center gap-3">
+            <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-xs text-slate-300">
+              <i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i>
+              <span>SSL 256-bit</span>
+            </div>
+            <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-xs text-slate-300">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-indigo-400"></i>
+              <span>Compra Garantida</span>
+            </div>
+            <div class="flex items-center gap-1.5 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-xs text-slate-300">
+              <i data-lucide="qr-code" class="w-4 h-4 text-amber-400"></i>
+              <span>PIX Protegido</span>
+            </div>
+          </div>
+        </div>
 
-    currentSlideIndex = index;
-    const galleryItem = product.gallery[index];
-    selectedColor = galleryItem.color;
+        <div class="text-center md:text-right">
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Termos & Políticas</h4>
+          <div class="flex flex-col gap-1.5 text-xs">
+            <a href="#" class="hover:text-indigo-400 transition-colors">Política de Privacidade</a>
+            <a href="#" class="hover:text-indigo-400 transition-colors">Termos de Uso</a>
+            <a href="#" class="hover:text-indigo-400 transition-colors">Trocas e Devoluções</a>
+          </div>
+        </div>
+      </div>
 
-    const mainImg = document.getElementById('modal-main-image');
-    if (mainImg) mainImg.src = galleryItem.url;
+      <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 TechStore - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
 
-    const tag = document.getElementById('slide-color-tag');
-    if (tag) tag.innerText = `Cor: ${galleryItem.color}`;
+  <script>
+    // BASE DE PRODUTOS
+    const products = [
+      // ELETRÔNICOS (1 a 10)
+      { id: 1, category: "eletronicos", title: "Fone de Ouvido Bluetooth 5.3 HiFi Dobrável Over-Ear", shortDescription: "Som Estéreo HiFi, Bateria de 10H e Graves Potentes.", fullDescription: "Fone Dobrável Over-Ear com Som Estéreo HiFi, Bateria de 10H, Graves Potentes, Arco Flexível e Chamadas Mãos-Livres.", price: 59.00, rating: 4.8, salesCount: 890, image: "fone1.jpg" },
+      { id: 2, category: "eletronicos", title: "Fone de Ouvido Sem Fio BETTDOW TWS Bluetooth 5.3", shortDescription: "Intra-auricular Bluetooth 5.3 para Android e iOS.", fullDescription: "Fone Intra-auricular TWS com Bluetooth 5.3, compatível com Android e iOS.", price: 52.04, rating: 4.7, salesCount: 1420, image: "fone2.jpg" },
+      { id: 3, category: "eletronicos", title: "Smart TV AOC Roku 32\" DLED (32S5155/78)", shortDescription: "Tela de 32 polegadas com sistema Roku TV integrado.", fullDescription: "Smart TV AOC Roku 32\" DLED Modelo 32S5155/78, com sistema Roku TV integrado.", price: 1026.85, rating: 4.9, salesCount: 530, image: "tv.jpg" },
+      { id: 4, category: "eletronicos", title: "Console PlayStation 5 Slim Digital Core 825GB", shortDescription: "Edição Digital Branco com 1 Controle Sem Fio DualSense.", fullDescription: "Console PlayStation 5 Slim Digital Core com 825GB de armazenamento e 1 Controle Sem Fio DualSense.", price: 1500.00, rating: 5.0, salesCount: 610, image: "ps5.jpg" },
+      { id: 5, category: "eletronicos", title: "Smartphone Xiaomi Poco X8 Pro Max 5G", shortDescription: "12GB RAM, NFC e Câmera 50MP 4K.", fullDescription: "Smartphone Xiaomi Poco X8 Pro Max 5G com 256GB / 512GB, 12GB RAM, NFC e Câmera 50MP 4K.", price: 500.00, rating: 4.9, salesCount: 780, image: "xiaomi.jpg" },
+      { id: 6, category: "eletronicos", title: "Tablet Hancdon S12 Plus 12,8\" 5G", shortDescription: "16GB RAM + 512GB ROM, Tela OLED 120Hz.", fullDescription: "Tablet Hancdon S12 Plus 12,8\" FHD, 16GB RAM + 512GB ROM, Tela OLED 120Hz, Bateria 8800mAh, Android 15.", price: 879.00, rating: 4.8, salesCount: 950, image: "tablet.jpg" },
+      { id: 7, category: "eletronicos", title: "Caixa de Som Bluetooth JBL Boombox 4", shortDescription: "Potência de 210W e resistente à água.", fullDescription: "Caixa de som Bluetooth JBL Boombox 4 com incrível potência de 210W e proteção contra água.", price: 459.90, rating: 4.9, salesCount: 1120, image: "jbl.jpg" },
+      { id: 8, category: "eletronicos", title: "Projetor BETTDOW Full HD 1080P (Compatível com 4K)", shortDescription: "Modelo AC1041, Wi-Fi 6, Bluetooth 5.0.", fullDescription: "Projetor BETTDOW Full HD 1080P (Compatível com 4K) Modelo AC1041, Wi-Fi 6, Bluetooth 5.0.", price: 150.00, rating: 4.7, salesCount: 430, image: "projetor.jpg" },
+      { id: 9, category: "eletronicos", title: "Ar-Condicionado Split Inverter Philco 9000 BTUs", shortDescription: "Frio, Modelo PAC9FB, 220V, Inverter.", fullDescription: "Ar-Condicionado Split Inverter Philco 9000 BTUs Frio, Modelo PAC9FB, 220V.", price: 800.00, rating: 4.8, salesCount: 310, image: "ar.jpg" },
+      { id: 10, category: "eletronicos", title: "Computador Completo TOB Intel Core i5", shortDescription: "Intel Core i5, SSD 120GB, 8GB RAM, Win 10 Pro.", fullDescription: "Computador Completo TOB com processador Intel Core i5, SSD 120GB, 8GB RAM e Windows 10 Pro.", price: 859.03, rating: 4.6, salesCount: 1250, image: "pc.jpg" },
 
-    document.querySelectorAll('.thumb-btn').forEach((btn, idx) => {
-      if (idx === index) {
-        btn.className = 'thumb-btn border-2 border-indigo-600 scale-105 rounded-xl overflow-hidden flex-shrink-0 transition-all bg-white p-1';
-      } else {
-        btn.className = 'thumb-btn border-2 border-transparent rounded-xl overflow-hidden flex-shrink-0 transition-all opacity-70 bg-white p-1';
+      // PERFUMES (11 a 20)
+      { id: 11, category: "perfumes", title: "Eau de Miyako (100 ml) - LAB 8", shortDescription: "LAB 8 - Elegância e sofisticação marcante.", fullDescription: "Sua fragrância sofisticada combina notas de alta fixação para momentos marcantes.", price: 50.00, rating: 4.9, salesCount: 850, image: "per1.jpg" },
+      { id: 12, category: "perfumes", title: "Blue de LAB 8 (100 ml) - LAB 8", shortDescription: "LAB 8 - Refrescância com fundo amadeirado.", fullDescription: "Perfeito para o uso diário ou eventos especiais, oferecendo ótimo desempenho.", price: 45.00, rating: 4.8, salesCount: 1120, image: "per2.jpg" },
+      { id: 13, category: "perfumes", title: "Perfume de Nicho Vision (100 ml) - LAB 8", shortDescription: "LAB 8 - Linha Nicho exclusiva.", fullDescription: "Para quem busca exlusividade e alta perfumaria com acordes refinados.", price: 49.99, rating: 5.0, salesCount: 430, image: "per3.jpg" },
+      { id: 14, category: "perfumes", title: "Perfume de Nicho Effervescent (100 ml) - LAB 8", shortDescription: "LAB 8 - Fragrância vibrante e envolvente.", fullDescription: "Notas efervescentes e marcantes com projeção surpreendente.", price: 69.99, rating: 4.9, salesCount: 760, image: "per4.jpg" },
+      { id: 15, category: "perfumes", title: "The Wave (100 ml) - FLUY", shortDescription: "FLUY - Frescor moderno e enérgico.", fullDescription: "Sentimento de liberdade e frescor constante para seu dia.", price: 166.99, rating: 4.7, salesCount: 310, image: "per5.jpg" },
+      { id: 16, category: "perfumes", title: "Natura Homem Sagaz (100 ml) - Natura", shortDescription: "Natura - Um clássico sedutor.", fullDescription: "Combinação de notas amadeiradas com o calor das pimentas.", price: 29.90, rating: 4.8, salesCount: 1520, image: "per6.jpg" },
+      { id: 17, category: "perfumes", title: "Lattafa Khamrah Eau de Parfum (100 ml) - Lattafa", shortDescription: "Lattafa - Perfumaria árabe gourmand.", fullDescription: "Notas quentes de especiarias, baunilha e tâmaras.", price: 40.50, rating: 5.0, salesCount: 940, image: "per7.jpg" },
+      { id: 18, category: "perfumes", title: "Asad Elixir Lattafa Eau de Parfum (100 ml) - Lattafa", shortDescription: "Lattafa - Intenso e misterioso.", fullDescription: "Presença marcante com notas amadeiradas e especiarias árabes.", price: 59.90, rating: 4.9, salesCount: 830, image: "per8.jpg" },
+      { id: 19, category: "perfumes", title: "Special Oud Al Wataniah (100 ml) - Al Wataniah", shortDescription: "Al Wataniah - O luxo do Oud oriental.", fullDescription: "Mistura tradicional do Oud árabe com um toque moderno.", price: 60.00, rating: 4.8, salesCount: 610, image: "per9.jpg" },
+      { id: 20, category: "perfumes", title: "Rasasi Hawas Black Original (100 ml) - Rasasi", shortDescription: "Rasasi - O poderoso Hawas Black.", fullDescription: "Projeção extrema e rastro inconfundível para marcar presença.", price: 49.90, rating: 5.0, salesCount: 1100, image: "per10.jpg" },
+
+      // ROUPAS / MODA
+      { 
+        id: 21, 
+        category: "roupas", 
+        title: "SUETER TRICOT CANELADO GOLA CARECA INVERNO Slim Fit", 
+        shortDescription: "Tricot Canelado Slim Fit Material de Luxo com Alta Qualidade.", 
+        fullDescription: "Suéter Tricot Canelado com Gola Careca, caimento Slim Fit que valoriza o corpo. Confeccionado em material de luxo com maciez e alta durabilidade.", 
+        price: 59.90, 
+        oldPrice: 139.90,
+        rating: 4.5, 
+        salesCount: 520, 
+        image: "sue.jpg",
+        gallery: [
+          { color: "Azul Marinho", url: "sue1.jpg" },
+          { color: "Off-White", url: "sue2.jpg" },
+          { color: "Verde Militar", url: "sue3.jpg" }
+        ],
+        sizes: ["P", "M", "G", "GG"]
+      },
+      { 
+        id: 22, 
+        category: "roupas", 
+        title: "Camisa Social Masculina Manga Curta De Botão Lisa Shirt", 
+        shortDescription: "Estilo Old Money e Casual com Caimento Leve e Sofisticado.", 
+        fullDescription: "Camisa Social Masculina de Manga Curta com botões, estilo casual/old money ideal para dias quentes e ocasiões especiais. Tecido leve de alta qualidade com caimento impecável.", 
+        price: 43.89, 
+        oldPrice: 79.90,
+        rating: 4.6, 
+        salesCount: 37300, 
+        image: "so.jpg",
+        gallery: [
+          { color: "Preto Clássico", url: "so1.jpg" },
+          { color: "Verde Militar", url: "so2.jpg" },
+          { color: "Vermelho Vinho", url: "so3.jpg" }
+        ],
+        sizes: ["P", "M", "G", "GG"]
+      },
+      { 
+        id: 23, 
+        category: "roupas", 
+        title: "Brossard Camisa Social Masculina Elástica Manga Comprida", 
+        shortDescription: "Tecido elástico de alta performance, caimento perfeito e elegante.", 
+        fullDescription: "Camisa social masculina Brossard de manga comprida com alta elasticidade (tecido stretch), modelagem slim fit que proporciona máximo conforto, toque macio e visual sofisticado para o dia a dia e eventos sociais.", 
+        price: 69.90, 
+        oldPrice: 198.00,
+        rating: 4.8, 
+        salesCount: 10700, 
+        image: "bro.jpg",
+        gallery: [
+          { color: "Preto (C003-Preto)", url: "bro1.jpg" },
+          { color: "Azul Marinho (C003-Azul)", url: "bro2.jpg" },
+          { color: "Branco Clássico", url: "bro3.jpg" }
+        ],
+        sizes: ["P", "M", "G", "GG", "XG"]
+      },
+      { 
+        id: 45, 
+        category: "roupas", 
+        title: "Camiseta Masculina de Tricot Básica Estilo Slim", 
+        shortDescription: "Textura canelada com nervuras verticais e caimento ajustado moderno.", 
+        fullDescription: "Camiseta Masculina Básica confeccionada em tricot leve com textura canelada em nervuras verticais. Modelagem Slim Fit que se ajusta perfeitamente ao corpo, combinando sofisticação, conforto e versatilidade.", 
+        price: 49.90, 
+        oldPrice: 129.90,
+        rating: 4.8, 
+        salesCount: 840, 
+        image: "tri.jpg",
+        gallery: [
+          { color: "Marsala", url: "tri1.jpg" },
+          { color: "Marrom", url: "tri2.jpg" },
+          { color: "Azul Marinho", url: "tri3.jpg" }
+        ],
+        sizes: ["P", "M", "G", "GG"]
+      },
+      { 
+        id: 24, 
+        category: "roupas", 
+        title: "Jaqueta Masculina Premium Conforto e Estilo", 
+        shortDescription: "Design sofisticado com toque aveludado e bolsos frontais.", 
+        fullDescription: "Jaqueta masculina de corte moderno com caimento impecável e tecido estruturado de alta densidade. Possui fechamento frontal versátil, bolsos funcionais no peito e acabamento premium para manter você aquecido com máximo conforto e elegância em qualquer ocasião.", 
+        price: 69.90, 
+        oldPrice: 249.97,
+        rating: 4.8, 
+        salesCount: 552, 
+        image: "ja.jpg",
+        gallery: [
+          { color: "Beige / Caqui", url: "ja1.jpg" },
+          { color: "Black", url: "ja2.jpg" },
+          { color: "Marrom", url: "ja3.jpg" }
+        ],
+        sizes: ["P", "M", "G", "GG"]
+      },
+      { 
+        id: 34, 
+        category: "roupas", 
+        title: "Mochila Tática Grande 50L Camping Trilhas Viagem Resistente Impermeável Masculina Mult...", 
+        shortDescription: "Capacidade de 50L, material impermeável ultra resistente e sistema MOLLE.", 
+        fullDescription: "Mochila Tática Militar de alta capacidade (50 Litros), ideal para camping, trilhas, viagens e uso diário. Confeccionada em tecido impermeável de alta resistência, conta com múltiplos compartimentos com zíper reforçado, velcros para patches decorativos (acompanha bandeiras) e travas de segurança ajustáveis.", 
+        price: 59.99, 
+        oldPrice: 159.90,
+        rating: 4.8, 
+        salesCount: 1969, 
+        image: "mo.jpg",
+        gallery: [
+          { color: "Preto", url: "mo1.jpg" },
+          { color: "Verde", url: "mo2.jpg" },
+          { color: "Marrom", url: "mo3.jpg" }
+        ]
+      },
+
+      // TÊNIS E CALÇADOS
+      { 
+        id: 46, 
+        category: "tenis", 
+        title: "Coturno Bota Militar Masculino Areia Couro Legítimo Impermeável", 
+        shortDescription: "Couro legítimo, resistente à água e solado tratorado antiderrapante.", 
+        fullDescription: "Coturno Bota Militar Masculino confeccionado em couro legítimo de alta resistência. Solado tratorado antiderrapante em borracha reforçada, forro acolchoado respirável e acabamento impermeável ideal para uso tático, trabalho pesado ou aventuras ao ar livre.", 
+        price: 59.90, 
+        oldPrice: 129.90, 
+        rating: 4.9, 
+        salesCount: 1840, 
+        image: "bota1.jpg", 
+        sizes: ["40", "41", "42", "43", "44", "45", "46", "47", "48"] 
+      },
+      { 
+        id: 47, 
+        category: "tenis", 
+        title: "Tênis Masculino Knit Calce Fácil Slip On Palmilha Gel", 
+        shortDescription: "Tecido respirável Knit, sistema slip on sem cadarço e palmilha macia.", 
+        fullDescription: "Tênis Masculino Knit Calce Fácil Slip On super prático e leve. Cabedal confeccionado em tecido tricotado respirável que se ajusta ao pé, equipado com palmilha anatômica em gel para conforto absoluto ao caminhar.", 
+        price: 77.99, 
+        oldPrice: 129.90, 
+        rating: 4.8, 
+        salesCount: 2950, 
+        image: "bota2.jpg", 
+        sizes: ["40", "41", "42", "43", "44", "45", "46", "47", "48"] 
+      },
+      { 
+        id: 48, 
+        category: "tenis", 
+        title: "Tênis Casual Masculino e Feminino CMP Estiloso e Confortável", 
+        shortDescription: "Design moderno Unissex, leve e extremamente confortável.", 
+        fullDescription: "Tênis Casual CMP Unissex com design versátil que combina perfeitamente com qualquer estilo. Possui estrutura reforçada com acabamento macio e solado leve em EVA que garante excelente absorção de impactos.", 
+        price: 58.44, 
+        oldPrice: 99.90, 
+        rating: 4.7, 
+        salesCount: 3410, 
+        image: "bota3.jpg", 
+        sizes: ["40", "41", "42", "43", "44", "45", "46", "47", "48"] 
+      },
+      { 
+        id: 49, 
+        category: "tenis", 
+        title: "Tênis Masculino Casual Sneaker Esporte Fino", 
+        shortDescription: "Visual elegante esporte fino, perfeito para o trabalho e momentos casuais.", 
+        fullDescription: "Tênis Sneaker Casual Masculino com acabamento esporte fino sofisticado. Confeccionado em material sintético nobre, com costuras reforçadas e solado reto para trazer a mistura perfeita entre elegância e praticidade.", 
+        price: 62.90, 
+        oldPrice: 119.90, 
+        rating: 4.8, 
+        salesCount: 1520, 
+        image: "bota4.jpg", 
+        sizes: ["40", "41", "42", "43", "44", "45", "46", "47", "48"] 
       }
-    });
-  }
+    ];
 
-  function selectSize(size) {
-    selectedSize = size;
-    document.querySelectorAll('.size-btn').forEach(btn => {
-      btn.className = 'size-btn border-2 border-gray-200 text-gray-700 hover:border-gray-300 font-bold text-xs py-2 px-3.5 rounded-xl transition-all active:scale-95';
-    });
-    const activeBtn = document.getElementById(`size-btn-${size}`);
-    if (activeBtn) {
-      activeBtn.className = 'size-btn border-2 border-indigo-600 bg-indigo-600 text-white font-bold text-xs py-2 px-3.5 rounded-xl transition-all active:scale-95';
-    }
-  }
+    // GERADOR AUTOMÁTICO DE FEEDBACKS / AVALIAÇÕES
+    function generateProductReviews() {
+      const reviewNames = [
+        "Carlos Silva", "Ana Souza", "Fernanda Lima", "Lucas Oliveira", "Mariana Costa",
+        "Gabriel Santos", "Juliana Pereira", "Rodrigo Alves", "Camila Martins", "Thiago Rocha",
+        "Beatriz Gomes", "Rafael Melo", "Patrícia Ribeiro", "Diego Fernandes", "Amanda Carvalho",
+        "Bruno Teixeira", "Vanessa Barbosa", "Felipe Nascimento", "Aline Santos", "Marcelo Dias",
+        "Isabela Castro", "Gustavo Martins", "Letícia Ferreira", "Renato Machado", "Priscila Ramos",
+        "Eduardo Faria", "Larissa Duarte", "Leonardo Cardoso", "Monique Freitas", "Sérgio Moraes",
+        "Renata Vasconcelos", "André Luiz", "Patrícia Mendes", "Vitor Hugo", "Fabiana Siqueira"
+      ];
 
-  function addCustomToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
+      const reviewCommentsGeneral = [
+        "Excelente produto! Chegou antes do prazo e a qualidade superou todas as minhas expectativas.",
+        "Muito bom, valeu cada centavo. Veio super bem embalado e idêntico ao anúncio.",
+        "Gostei demais! Comprarei novamente na loja com certeza, atendimento de primeira.",
+        "Produto sensacional! Qualidade impecável e muito bonito.",
+        "Ótimo custo-benefício. Recomendo a todos da comunidade!",
+        "Chegou direitinho e super rápido. Muito satisfeito com a compra.",
+        "Superou minhas expectativas, produto de extrema qualidade e acabamento perfeito.",
+        "Perfeito! Atendeu todas as minhas necessidades, nota 10.",
+        "Chegou impecável, produto excelente e entrega super rápida.",
+        "Adorei! Muito confortável e bonito, recomendo de olhos fechados."
+      ];
 
-    let variationText = [];
-    if (selectedColor && selectedColor !== 'Padrão') variationText.push(`Cor: ${selectedColor}`);
-    if (selectedSize) variationText.push(`Tam: ${selectedSize}`);
+      const perfumeComments = [
+        "Fragrância surreal! A fixação na minha pele passa de 8 horas com tranquilidade.",
+        "Que perfume espetacular! Rastro marcante, recebi vários elogios já no primeiro dia de uso.",
+        "Aroma muito sofisticado e elegante. Veio bem lacrado na caixa original, nota 10!",
+        "Cheiro viciante! O frasco é lindo e a projeção nas primeiras 2 horas é excelente.",
+        "Excelente custo-benefício para um perfume com essa qualidade de notas. Compraria de novo sem dúvidas.",
+        "Gostei demais! O perfume fixa muito na roupa também, fica o dia inteiro. Recomendo demais!",
+        "Fragrância muito agradável, nada enjoativa. Entrega super rápida e bem embalada.",
+        "Perfume marcante e com excelente presença. Ótimo para encontros e eventos noturnos.",
+        "Achei incrível a evolução das notas na pele. Produto 100% original!",
+        "Valeu cada centavo! Perfume potente e muito cheiroso. Todo mundo pergunta qual estou usando.",
+        "Entrega rápida e embalagem impecável. A fragrância é marcante do jeito que eu gosto.",
+        "Projeção monstra! Borrifou poucas vezes e já toma conta do ambiente de forma muito agradável.",
+        "Um dos melhores perfumes da minha coleção agora. Fixa e projeta demais!",
+        "Muito satisfeito com a compra! O cheiro é divino e a fixação é surpreendente.",
+        "Chegou super rápido. A fragrância é muito envolvente e marcante."
+      ];
 
-    const itemTitle = product.title + (variationText.length > 0 ? ` (${variationText.join(', ')})` : '');
-    const itemImage = product.gallery ? product.gallery[currentSlideIndex].url : product.image;
+      const timeAgos = ["há 1 dia", "há 2 dias", "há 3 dias", "há 5 dias", "há 1 semana", "há 2 semanas", "há 3 semanas", "há 1 mês"];
 
-    const cartItemId = `${productId}-${selectedColor || 'default'}-${selectedSize || 'default'}`;
-    const existing = cart.find(item => item.cartItemId === cartItemId);
+      products.forEach(product => {
+        let feedbackCount = 0;
+        let commentsList = [];
 
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({
-        ...product,
-        cartItemId,
-        title: itemTitle,
-        image: itemImage,
-        quantity: 1
+        if (product.category === "perfumes") {
+          feedbackCount = Math.floor(Math.random() * (30 - 20 + 1)) + 20; 
+          commentsList = perfumeComments;
+        } else {
+          feedbackCount = Math.floor(Math.random() * (40 - 20 + 1)) + 20;
+          commentsList = reviewCommentsGeneral;
+        }
+
+        product.reviews = [];
+
+        for (let i = 0; i < feedbackCount; i++) {
+          const randomName = reviewNames[Math.floor(Math.random() * reviewNames.length)];
+          const randomComment = commentsList[Math.floor(Math.random() * commentsList.length)];
+          const randomTime = timeAgos[Math.floor(Math.random() * timeAgos.length)];
+          const randomStars = Math.random() > 0.2 ? 5 : 4;
+
+          product.reviews.push({
+            name: randomName,
+            comment: randomComment,
+            date: randomTime,
+            rating: randomStars
+          });
+        }
       });
     }
 
-    if (typeof confetti === 'function') {
+    generateProductReviews();
+
+    let currentCategory = 'todos';
+    let cart = [];
+    let customerData = {};
+    let shippingCost = 0;
+    let shippingDays = 0;
+
+    let currentSlideIndex = 0;
+    let selectedSize = '';
+    let selectedColor = '';
+
+    function getStarsHTML(rating) {
+      const fullStars = Math.floor(rating);
+      let starsHTML = '';
+      for (let i = 0; i < 5; i++) {
+        starsHTML += i < fullStars 
+          ? `<i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400 inline"></i>`
+          : `<i data-lucide="star" class="w-3.5 h-3.5 text-gray-300 inline"></i>`;
+      }
+      return starsHTML;
+    }
+
+    function filterCategory(category) {
+      currentCategory = category;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.className = 'cat-btn bg-white text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 border border-gray-200 px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 shadow-sm hover:scale-105 active:scale-95';
+      });
+      const activeBtn = document.getElementById(`cat-${category}`);
+      if (activeBtn) {
+        activeBtn.className = 'cat-btn bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 shadow-md hover:scale-105 active:scale-95';
+      }
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('product-grid');
+      const filtered = currentCategory === 'todos' ? products : products.filter(p => p.category === currentCategory);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-12">Nenhum produto encontrado.</p>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((product) => `
+        <div class="group bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up">
+          <div class="relative cursor-pointer overflow-hidden bg-white aspect-square flex items-center justify-center p-3" onclick="openProductModal(${product.id})">
+            ${product.oldPrice ? `<span class="absolute top-3 left-3 bg-red-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-full shadow-md z-10">OFERTA</span>` : ''}
+            <img src="${product.image}" alt="${product.title}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <h4 onclick="openProductModal(${product.id})" class="text-base font-bold text-gray-800 mb-1 hover:text-indigo-600 cursor-pointer transition-colors line-clamp-2">${product.title}</h4>
+            <div class="flex items-center gap-1.5 mb-2 text-xs text-gray-500">
+              <span class="flex items-center gap-0.5">${getStarsHTML(product.rating)}</span>
+              <span class="font-bold text-gray-700">${product.rating}</span>
+              <span>(${product.reviews ? product.reviews.length : product.salesCount} avaliações)</span>
+            </div>
+            <p class="text-gray-500 text-xs mb-4 flex-1 line-clamp-2">${product.shortDescription}</p>
+            <div class="flex items-center justify-between mt-auto pt-3 border-t border-gray-50">
+              <div>
+                ${product.oldPrice ? `<span class="text-xs text-gray-400 line-through block">R$ ${product.oldPrice.toFixed(2).replace('.', ',')}</span>` : '<span class="text-xs text-gray-400 block font-bold">À vista no PIX</span>'}
+                <span class="text-lg font-black text-indigo-600">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
+              </div>
+              <button onclick="openProductModal(${product.id})" class="btn-shimmer bg-indigo-600 hover:bg-indigo-700 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md active:scale-90">
+                <i data-lucide="eye" class="w-4 h-4"></i> Ver Opções
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function openProductModal(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      currentSlideIndex = 0;
+      selectedSize = product.sizes ? product.sizes[0] : '';
+      
+      const gallery = product.gallery || [{ color: 'Padrão', url: product.image }];
+      selectedColor = gallery[0].color;
+
+      const modalContent = document.getElementById('product-modal-content');
+      
+      modalContent.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="flex flex-col gap-3">
+            <div class="relative overflow-hidden rounded-2xl border border-gray-100 bg-white group aspect-square flex items-center justify-center p-2">
+              <img id="modal-main-image" src="${gallery[0].url}" class="w-full h-full object-contain transition-all duration-300">
+              
+              ${gallery.length > 1 ? `
+                <button onclick="changeSlide(-1, ${product.id})" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-md backdrop-blur-sm transition-all">
+                  <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button onclick="changeSlide(1, ${product.id})" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-md backdrop-blur-sm transition-all">
+                  <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+              ` : ''}
+
+              <span id="slide-color-tag" class="absolute bottom-3 left-3 bg-black/70 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md">
+                Cor: ${gallery[0].color}
+              </span>
+            </div>
+
+            ${gallery.length > 1 ? `
+              <div class="flex gap-2 overflow-x-auto pb-1">
+                ${gallery.map((img, idx) => `
+                  <button onclick="setSlide(${idx}, ${product.id})" id="thumb-${idx}" class="thumb-btn border-2 ${idx === 0 ? 'border-indigo-600 scale-105' : 'border-transparent'} rounded-xl overflow-hidden flex-shrink-0 transition-all bg-white p-1">
+                    <img src="${img.url}" class="w-14 h-14 object-contain">
+                  </button>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                ${product.category === 'roupas' ? 'Moda Masculina' : product.category === 'tenis' ? 'Tênis e Calçados' : product.category === 'perfumes' ? 'Perfumes Importados' : product.category}
+              </span>
+              <h3 class="text-xl font-black text-gray-800 mt-2">${product.title}</h3>
+              
+              <div class="flex items-baseline gap-2 my-2">
+                <span class="text-3xl font-black text-indigo-600">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
+                ${product.oldPrice ? `<span class="text-sm text-gray-400 line-through">R$ ${product.oldPrice.toFixed(2).replace('.', ',')}</span>` : ''}
+              </div>
+
+              <p class="text-gray-600 text-xs sm:text-sm mb-4 leading-relaxed">${product.fullDescription}</p>
+
+              ${product.sizes ? `
+                <div class="mb-4">
+                  <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Selecione o Tamanho:</label>
+                  <div class="flex gap-2 flex-wrap max-h-36 overflow-y-auto p-1">
+                    ${product.sizes.map(size => `
+                      <button onclick="selectSize('${size}')" id="size-btn-${size}" class="size-btn border-2 ${size === selectedSize ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-gray-200 text-gray-700 hover:border-gray-300'} font-bold text-xs py-2 px-3.5 rounded-xl transition-all active:scale-95">
+                        ${size}
+                      </button>
+                    `).join('')}
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- BOTÃO ADICIONAR AO CARRINHO COM ANIMAÇÃO PULSE GLOW -->
+            <button onclick="addCustomToCart(${product.id})" class="btn-shimmer animate-pulse-glow w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3.5 rounded-2xl font-black flex justify-center items-center gap-2 shadow-lg hover:shadow-indigo-500/40 transition-all active:scale-95">
+              <i data-lucide="shopping-cart" class="animate-bounce"></i> Adicionar ao Carrinho
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-8 border-t border-gray-100 pt-6">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-lg font-black text-gray-800 flex items-center gap-2">
+              <i data-lucide="message-square" class="text-indigo-600 w-5 h-5"></i>
+              Avaliações dos Clientes
+            </h4>
+            <span class="text-xs bg-indigo-50 text-indigo-700 font-extrabold px-3 py-1.5 rounded-full border border-indigo-100">
+              ${product.reviews ? product.reviews.length : 0} avaliações
+            </span>
+          </div>
+
+          <div class="space-y-3 max-h-64 overflow-y-auto pr-1">
+            ${product.reviews ? product.reviews.map(rev => `
+              <div class="bg-gray-50 p-3.5 rounded-2xl border border-gray-100 text-xs">
+                <div class="flex justify-between items-center mb-1.5">
+                  <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-black flex items-center justify-center text-xs shadow-sm">
+                      ${rev.name.charAt(0)}
+                    </div>
+                    <span class="font-extrabold text-gray-800">${rev.name}</span>
+                  </div>
+                  <span class="text-[11px] text-gray-400 font-medium">${rev.date}</span>
+                </div>
+                <div class="flex items-center gap-1 mb-1">
+                  ${getStarsHTML(rev.rating)}
+                </div>
+                <p class="text-gray-600 leading-relaxed">${rev.comment}</p>
+              </div>
+            `).join('') : '<p class="text-gray-400 text-xs">Nenhuma avaliação ainda.</p>'}
+          </div>
+        </div>
+      `;
+
+      document.getElementById('product-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function changeSlide(direction, productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product || !product.gallery) return;
+
+      currentSlideIndex = (currentSlideIndex + direction + product.gallery.length) % product.gallery.length;
+      setSlide(currentSlideIndex, productId);
+    }
+
+    function setSlide(index, productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product || !product.gallery) return;
+
+      currentSlideIndex = index;
+      const galleryItem = product.gallery[index];
+      selectedColor = galleryItem.color;
+
+      document.getElementById('modal-main-image').src = galleryItem.url;
+      document.getElementById('slide-color-tag').innerText = `Cor: ${galleryItem.color}`;
+
+      document.querySelectorAll('.thumb-btn').forEach((btn, idx) => {
+        if (idx === index) {
+          btn.className = 'thumb-btn border-2 border-indigo-600 scale-105 rounded-xl overflow-hidden flex-shrink-0 transition-all bg-white p-1';
+        } else {
+          btn.className = 'thumb-btn border-2 border-transparent rounded-xl overflow-hidden flex-shrink-0 transition-all opacity-70 bg-white p-1';
+        }
+      });
+    }
+
+    function selectSize(size) {
+      selectedSize = size;
+      document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.className = 'size-btn border-2 border-gray-200 text-gray-700 hover:border-gray-300 font-bold text-xs py-2 px-3.5 rounded-xl transition-all active:scale-95';
+      });
+      const activeBtn = document.getElementById(`size-btn-${size}`);
+      if (activeBtn) {
+        activeBtn.className = 'size-btn border-2 border-indigo-600 bg-indigo-600 text-white font-bold text-xs py-2 px-3.5 rounded-xl transition-all active:scale-95';
+      }
+    }
+
+    function addCustomToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      const itemTitle = `${product.title} ${selectedColor ? `(${selectedColor}` : ''}${selectedSize ? `, Tam: ${selectedSize})` : ')'}`;
+      const itemImage = product.gallery ? product.gallery[currentSlideIndex].url : product.image;
+
+      const cartItemId = `${productId}-${selectedColor}-${selectedSize}`;
+      const existing = cart.find(item => item.cartItemId === cartItemId);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          ...product,
+          cartItemId,
+          title: itemTitle,
+          image: itemImage,
+          quantity: 1
+        });
+      }
+
       confetti({ particleCount: 30, spread: 60, origin: { y: 0.5 } });
+      closeProductModal();
+      updateCart();
     }
-    closeProductModal();
-    updateCart();
-  }
 
-  function closeProductModal() {
-    const pModal = document.getElementById('product-modal');
-    if (pModal) pModal.classList.add('hidden');
-  }
-
-  function changeQuantity(cartItemId, delta) {
-    const item = cart.find(i => i.cartItemId === cartItemId || i.id === cartItemId);
-    if (!item) return;
-
-    item.quantity += delta;
-    if (item.quantity <= 0) {
-      cart = cart.filter(i => (i.cartItemId || i.id) !== cartItemId);
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
     }
-    updateCart();
-  }
 
-  function updateCart() {
-    const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartCountEl = document.getElementById('cart-count');
-    if (cartCountEl) cartCountEl.innerText = totalCount;
+    function changeQuantity(cartItemId, delta) {
+      const item = cart.find(i => i.cartItemId === cartItemId || i.id === cartItemId);
+      if (!item) return;
 
-    const cartItemsContainer = document.getElementById('cart-items');
-    const nextBtn = document.getElementById('next-to-address-btn');
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(i => (i.cartItemId || i.id) !== cartItemId);
+      }
+      updateCart();
+    }
 
-    if (cartItemsContainer) {
+    function updateCart() {
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cart-count').innerText = totalCount;
+
+      const cartItemsContainer = document.getElementById('cart-items');
+      const nextBtn = document.getElementById('next-to-address-btn');
+
       if (cart.length === 0) {
         cartItemsContainer.innerHTML = `<p class="text-center text-gray-400 my-12">Seu carrinho está vazio 🛒</p>`;
-        if (nextBtn) nextBtn.disabled = true;
+        nextBtn.disabled = true;
       } else {
-        if (nextBtn) nextBtn.disabled = false;
+        nextBtn.disabled = false;
         cartItemsContainer.innerHTML = cart.map(item => `
           <div class="py-3.5 flex items-center gap-3">
             <img src="${item.image}" class="w-14 h-14 object-contain bg-white rounded-xl border border-gray-100 p-1">
@@ -557,177 +964,152 @@
           </div>
         `).join('');
       }
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      document.getElementById('cart-subtotal').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+      updateCheckoutTotals();
+      lucide.createIcons();
     }
 
-    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const cartSubtotalEl = document.getElementById('cart-subtotal');
-    if (cartSubtotalEl) cartSubtotalEl.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    
-    updateCheckoutTotals();
-    safeCreateIcons();
-  }
-
-  function toggleCart() {
-    const cModal = document.getElementById('cart-modal');
-    if (cModal) cModal.classList.toggle('hidden');
-    goToCartStep();
-  }
-
-  function goToAddressStep() {
-    const stepCart = document.getElementById('step-cart');
-    const stepAddress = document.getElementById('step-address');
-    const modalTitle = document.getElementById('modal-title');
-
-    if (stepCart) stepCart.classList.add('hidden');
-    if (stepAddress) stepAddress.classList.remove('hidden');
-    if (modalTitle) modalTitle.innerHTML = `<i data-lucide="map-pin" class="text-indigo-600"></i> Endereço de Entrega`;
-    
-    updateCheckoutTotals();
-    safeCreateIcons();
-  }
-
-  function goToCartStep() {
-    const stepCart = document.getElementById('step-cart');
-    const stepAddress = document.getElementById('step-address');
-    const modalTitle = document.getElementById('modal-title');
-
-    if (stepAddress) stepAddress.classList.add('hidden');
-    if (stepCart) stepCart.classList.remove('hidden');
-    if (modalTitle) modalTitle.innerHTML = `<i data-lucide="shopping-cart" class="text-indigo-600"></i> Seu Carrinho`;
-    
-    safeCreateIcons();
-  }
-
-  function calculateShipping(uf) {
-    const ufUpper = uf.toUpperCase().trim();
-
-    const shippingRules = {
-      'SP': { cost: 0.00, days: "1 a 2" },
-      'RJ': { cost: 14.90, days: "2 a 4" },
-      'MG': { cost: 15.90, days: "3 a 5" },
-      'ES': { cost: 18.50, days: "3 a 5" },
-      'PR': { cost: 19.90, days: "3 a 6" },
-      'SC': { cost: 21.90, days: "4 a 6" },
-      'RS': { cost: 24.90, days: "4 a 7" },
-      'DF': { cost: 22.00, days: "3 a 5" },
-      'GO': { cost: 23.50, days: "4 a 6" },
-      'BA': { cost: 29.90, days: "5 a 8" },
-      'PE': { cost: 34.90, days: "6 a 9" },
-      'CE': { cost: 36.90, days: "6 a 10" },
-      'AM': { cost: 48.90, days: "8 a 14" },
-      'PA': { cost: 42.90, days: "7 a 12" }
-    };
-
-    const defaultRule = { cost: 32.00, days: "5 a 10" };
-
-    const result = shippingRules[ufUpper] || defaultRule;
-    shippingCost = result.cost;
-    shippingDays = result.days;
-
-    const shippingBox = document.getElementById('shipping-info-box');
-    const shippingDaysEl = document.getElementById('shipping-days');
-    const shippingCostEl = document.getElementById('shipping-cost');
-
-    if (shippingBox) shippingBox.classList.remove('hidden');
-    if (shippingDaysEl) shippingDaysEl.innerText = `${shippingDays} dias úteis`;
-    if (shippingCostEl) shippingCostEl.innerText = shippingCost === 0 ? "GRÁTIS" : `R$ ${shippingCost.toFixed(2).replace('.', ',')}`;
-
-    updateCheckoutTotals();
-  }
-
-  function updateCheckoutTotals() {
-    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const total = subtotal + shippingCost;
-
-    const checkSubtotal = document.getElementById('checkout-subtotal');
-    const checkShipping = document.getElementById('checkout-shipping');
-    const checkTotal = document.getElementById('checkout-total');
-
-    if (checkSubtotal) checkSubtotal.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    if (checkShipping) checkShipping.innerText = shippingCost === 0 ? "GRÁTIS" : `R$ ${shippingCost.toFixed(2).replace('.', ',')}`;
-    if (checkTotal) checkTotal.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
-  }
-
-  async function fetchCEP(cep) {
-    const cleanCEP = cep.replace(/\D/g, '');
-    if (cleanCEP.length === 8) {
-      try {
-        const response = await fetch(`https://viacep.com.br/ws/${cleanCEP}/json/`);
-        const data = await response.json();
-        if (!data.erro) {
-          if (document.getElementById('cust-street')) document.getElementById('cust-street').value = data.logradouro;
-          if (document.getElementById('cust-neighborhood')) document.getElementById('cust-neighborhood').value = data.bairro;
-          if (document.getElementById('cust-city')) document.getElementById('cust-city').value = data.localidade;
-          if (document.getElementById('cust-state')) document.getElementById('cust-state').value = data.uf;
-          
-          calculateShipping(data.uf);
-          if (document.getElementById('cust-number')) document.getElementById('cust-number').focus();
-        }
-      } catch (e) {
-        console.error("Erro ao buscar CEP:", e);
-      }
+    function toggleCart() {
+      document.getElementById('cart-modal').classList.toggle('hidden');
+      goToCartStep();
     }
-  }
 
-  function generatePixPayload(key, name, city, amount, txId = "LOJA123") {
-    const formatField = (id, value) => `${id}${value.length.toString().padStart(2, '0')}${value}`;
-    const merchantAccount = formatField('00', 'br.gov.bcb.pix') + formatField('01', key);
+    function goToAddressStep() {
+      document.getElementById('step-cart').classList.add('hidden');
+      document.getElementById('step-address').classList.remove('hidden');
+      document.getElementById('modal-title').innerHTML = `<i data-lucide="map-pin" class="text-indigo-600"></i> Endereço de Entrega`;
+      updateCheckoutTotals();
+      lucide.createIcons();
+    }
 
-    let payload = 
-      formatField('00', '01') +
-      formatField('26', merchantAccount) +
-      formatField('52', '0000') +
-      formatField('53', '986') +
-      formatField('54', amount.toFixed(2)) +
-      formatField('58', 'BR') +
-      formatField('59', name) +
-      formatField('60', city) +
-      formatField('62', formatField('05', txId)) +
-      '6304';
+    function goToCartStep() {
+      document.getElementById('step-address').classList.add('hidden');
+      document.getElementById('step-cart').classList.remove('hidden');
+      document.getElementById('modal-title').innerHTML = `<i data-lucide="shopping-cart" class="text-indigo-600"></i> Seu Carrinho`;
+      lucide.createIcons();
+    }
 
-    function crc16(str) {
-      let crc = 0xFFFF;
-      for (let i = 0; i < str.length; i++) {
-        crc ^= str.charCodeAt(i) << 8;
-        for (let j = 0; j < 8; j++) {
-          crc = (crc & 0x8000) !== 0 ? (crc << 1) ^ 0x1021 : crc << 1;
-          crc &= 0xFFFF;
+    function calculateShipping(uf) {
+      const ufUpper = uf.toUpperCase().trim();
+
+      const shippingRules = {
+        'SP': { cost: 0.00, days: "1 a 2" },
+        'RJ': { cost: 14.90, days: "2 a 4" },
+        'MG': { cost: 15.90, days: "3 a 5" },
+        'ES': { cost: 18.50, days: "3 a 5" },
+        'PR': { cost: 19.90, days: "3 a 6" },
+        'SC': { cost: 21.90, days: "4 a 6" },
+        'RS': { cost: 24.90, days: "4 a 7" },
+        'DF': { cost: 22.00, days: "3 a 5" },
+        'GO': { cost: 23.50, days: "4 a 6" },
+        'BA': { cost: 29.90, days: "5 a 8" },
+        'PE': { cost: 34.90, days: "6 a 9" },
+        'CE': { cost: 36.90, days: "6 a 10" },
+        'AM': { cost: 48.90, days: "8 a 14" },
+        'PA': { cost: 42.90, days: "7 a 12" }
+      };
+
+      const defaultRule = { cost: 32.00, days: "5 a 10" };
+
+      const result = shippingRules[ufUpper] || defaultRule;
+      shippingCost = result.cost;
+      shippingDays = result.days;
+
+      document.getElementById('shipping-info-box').classList.remove('hidden');
+      document.getElementById('shipping-days').innerText = `${shippingDays} dias úteis`;
+      document.getElementById('shipping-cost').innerText = shippingCost === 0 ? "GRÁTIS" : `R$ ${shippingCost.toFixed(2).replace('.', ',')}`;
+
+      updateCheckoutTotals();
+    }
+
+    function updateCheckoutTotals() {
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const total = subtotal + shippingCost;
+
+      document.getElementById('checkout-subtotal').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+      document.getElementById('checkout-shipping').innerText = shippingCost === 0 ? "GRÁTIS" : `R$ ${shippingCost.toFixed(2).replace('.', ',')}`;
+      document.getElementById('checkout-total').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+
+    async function fetchCEP(cep) {
+      const cleanCEP = cep.replace(/\D/g, '');
+      if (cleanCEP.length === 8) {
+        try {
+          const response = await fetch(`https://viacep.com.br/ws/${cleanCEP}/json/`);
+          const data = await response.json();
+          if (!data.erro) {
+            document.getElementById('cust-street').value = data.logradouro;
+            document.getElementById('cust-neighborhood').value = data.bairro;
+            document.getElementById('cust-city').value = data.localidade;
+            document.getElementById('cust-state').value = data.uf;
+            
+            calculateShipping(data.uf);
+            document.getElementById('cust-number').focus();
+          }
+        } catch (e) {
+          console.error("Erro ao buscar CEP:", e);
         }
       }
-      return crc.toString(16).toUpperCase().padStart(4, '0');
     }
 
-    return payload + crc16(payload);
-  }
+    function generatePixPayload(key, name, city, amount, txId = "LOJA123") {
+      const formatField = (id, value) => `${id}${value.length.toString().padStart(2, '0')}${value}`;
+      const merchantAccount = formatField('00', 'br.gov.bcb.pix') + formatField('01', key);
 
-  function openCheckout(e) {
-    if (e && e.preventDefault) e.preventDefault();
+      let payload = 
+        formatField('00', '01') +
+        formatField('26', merchantAccount) +
+        formatField('52', '0000') +
+        formatField('53', '986') +
+        formatField('54', amount.toFixed(2)) +
+        formatField('58', 'BR') +
+        formatField('59', name) +
+        formatField('60', city) +
+        formatField('62', formatField('05', txId)) +
+        '6304';
 
-    customerData = {
-      name: document.getElementById('cust-name') ? document.getElementById('cust-name').value : '',
-      phone: document.getElementById('cust-phone') ? document.getElementById('cust-phone').value : '',
-      cep: document.getElementById('cust-cep') ? document.getElementById('cust-cep').value : '',
-      street: document.getElementById('cust-street') ? document.getElementById('cust-street').value : '',
-      number: document.getElementById('cust-number') ? document.getElementById('cust-number').value : '',
-      comp: document.getElementById('cust-comp') ? document.getElementById('cust-comp').value : '',
-      neighborhood: document.getElementById('cust-neighborhood') ? document.getElementById('cust-neighborhood').value : '',
-      city: document.getElementById('cust-city') ? document.getElementById('cust-city').value : '',
-      state: document.getElementById('cust-state') ? document.getElementById('cust-state').value : '',
-    };
+      function crc16(str) {
+        let crc = 0xFFFF;
+        for (let i = 0; i < str.length; i++) {
+          crc ^= str.charCodeAt(i) << 8;
+          for (let j = 0; j < 8; j++) {
+            crc = (crc & 0x8000) !== 0 ? (crc << 1) ^ 0x1021 : crc << 1;
+            crc &= 0xFFFF;
+          }
+        }
+        return crc.toString(16).toUpperCase().padStart(4, '0');
+      }
 
-    toggleCart();
-    const pixModal = document.getElementById('pix-modal');
-    if (pixModal) pixModal.classList.remove('hidden');
+      return payload + crc16(payload);
+    }
 
-    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const totalSum = subtotal + shippingCost;
+    function openCheckout(e) {
+      e.preventDefault();
 
-    const pixAmountEl = document.getElementById('pix-amount');
-    if (pixAmountEl) pixAmountEl.innerText = `R$ ${totalSum.toFixed(2).replace('.', ',')}`;
+      customerData = {
+        name: document.getElementById('cust-name').value,
+        phone: document.getElementById('cust-phone').value,
+        cep: document.getElementById('cust-cep').value,
+        street: document.getElementById('cust-street').value,
+        number: document.getElementById('cust-number').value,
+        comp: document.getElementById('cust-comp').value,
+        neighborhood: document.getElementById('cust-neighborhood').value,
+        city: document.getElementById('cust-city').value,
+        state: document.getElementById('cust-state').value,
+      };
 
-    const deliverySummaryEl = document.getElementById('delivery-summary');
-    if (deliverySummaryEl) {
-      deliverySummaryEl.innerHTML = `
+      toggleCart();
+      const pixModal = document.getElementById('pix-modal');
+      pixModal.classList.remove('hidden');
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const totalSum = subtotal + shippingCost;
+
+      document.getElementById('pix-amount').innerText = `R$ ${totalSum.toFixed(2).replace('.', ',')}`;
+
+      document.getElementById('delivery-summary').innerHTML = `
         <p class="font-extrabold border-b border-indigo-200/60 pb-1 mb-1">📍 Entregar para: ${customerData.name}</p>
         <p>${customerData.street}, nº ${customerData.number} ${customerData.comp ? '('+customerData.comp+')' : ''}</p>
         <p>${customerData.neighborhood} - ${customerData.city}/${customerData.state} - CEP: ${customerData.cep}</p>
@@ -736,76 +1118,60 @@
           <span>${shippingCost === 0 ? "GRÁTIS" : 'R$ ' + shippingCost.toFixed(2).replace('.', ',')}</span>
         </div>
       `;
-    }
 
-    const whatsappNumber = "5561996077907";
-    const itemsList = cart.map(i => `- ${i.quantity}x ${i.title}`).join('\n');
-    const msgText = encodeURIComponent(
-      `*Novo Pedido na Loja!*\n\n` +
-      `*Cliente:* ${customerData.name}\n` +
-      `*Itens:*\n${itemsList}\n\n` +
-      `*Subtotal:* R$ ${subtotal.toFixed(2)}\n` +
-      `*Frete:* R$ ${shippingCost.toFixed(2)} (${shippingDays} dias úteis)\n` +
-      `*Total com Frete:* R$ ${totalSum.toFixed(2)}\n\n` +
-      `*Endereço de Entrega:*\n` +
-      `${customerData.street}, ${customerData.number} (${customerData.comp})\n` +
-      `${customerData.neighborhood} - ${customerData.city}/${customerData.state}\n` +
-      `CEP: ${customerData.cep}`
-    );
-    
-    const waBtn = document.getElementById('whatsapp-btn');
-    if (waBtn) waBtn.href = `https://wa.me/${whatsappNumber}?text=${msgText}`;
+      const whatsappNumber = "5561996077907";
+      const itemsList = cart.map(i => `- ${i.quantity}x ${i.title}`).join('\n');
+      const msgText = encodeURIComponent(
+        `*Novo Pedido na Loja!*\n\n` +
+        `*Cliente:* ${customerData.name}\n` +
+        `*Itens:*\n${itemsList}\n\n` +
+        `*Subtotal:* R$ ${subtotal.toFixed(2)}\n` +
+        `*Frete:* R$ ${shippingCost.toFixed(2)} (${shippingDays} dias úteis)\n` +
+        `*Total com Frete:* R$ ${totalSum.toFixed(2)}\n\n` +
+        `*Endereço de Entrega:*\n` +
+        `${customerData.street}, ${customerData.number} (${customerData.comp})\n` +
+        `${customerData.neighborhood} - ${customerData.city}/${customerData.state}\n` +
+        `CEP: ${customerData.cep}`
+      );
+      document.getElementById('whatsapp-btn').href = `https://wa.me/${whatsappNumber}?text=${msgText}`;
 
-    const pixKey = "08388624113";
-    const receiverName = "TechStore";
-    const receiverCity = "SAO PAULO";
+      const pixKey = "08388624113";
+      const receiverName = "TechStore";
+      const receiverCity = "SAO PAULO";
 
-    const pixString = generatePixPayload(pixKey, receiverName, receiverCity, totalSum);
-    const pixInput = document.getElementById('pix-code-input');
-    if (pixInput) pixInput.value = pixString;
+      const pixString = generatePixPayload(pixKey, receiverName, receiverCity, totalSum);
+      document.getElementById('pix-code-input').value = pixString;
 
-    const qrContainer = document.getElementById('qrcode');
-    if (qrContainer) {
+      const qrContainer = document.getElementById('qrcode');
       qrContainer.innerHTML = ""; 
-      if (typeof QRCode !== 'undefined') {
-        new QRCode(qrContainer, {
-          text: pixString,
-          width: 170,
-          height: 170,
-          colorDark : "#1e1b4b",
-          colorLight : "#ffffff",
-          correctLevel : QRCode.CorrectLevel.M
-        });
-      }
-    }
+      new QRCode(qrContainer, {
+        text: pixString,
+        width: 170,
+        height: 170,
+        colorDark : "#1e1b4b",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.M
+      });
 
-    if (typeof confetti === 'function') {
       confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
     }
-  }
 
-  function closeCheckout() {
-    const pixModal = document.getElementById('pix-modal');
-    if (pixModal) pixModal.classList.add('hidden');
-  }
+    function closeCheckout() {
+      document.getElementById('pix-modal').classList.add('hidden');
+    }
 
-  function copyPixCode() {
-    const copyText = document.getElementById('pix-code-input');
-    if (copyText) {
+    function copyPixCode() {
+      const copyText = document.getElementById('pix-code-input');
       copyText.select();
       navigator.clipboard.writeText(copyText.value);
 
       const toast = document.getElementById('copy-toast');
-      if (toast) {
-        toast.classList.remove('hidden');
-        setTimeout(() => toast.classList.add('hidden'), 3000);
-      }
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 3000);
     }
-  }
 
-  // INICIALIZAÇÃO SEGURA AO CARREGAR O DOM
-  document.addEventListener("DOMContentLoaded", () => {
     renderProducts();
     updateCart();
-  });
-</script>
+  </script>
+</body>
+</html>
