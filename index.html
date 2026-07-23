@@ -12,7 +12,6 @@
   <meta property="og:title" content="Tech Store - Produtos & PIX" />
   <meta property="og:description" content="As melhores ofertas em Eletrônicos, Perfumes, Moda e Calçados com desconto exclusivo no PIX e envio rápido!" />
   <meta property="og:url" content="https://traphorde6-ui.github.io/TechStore-/" />
-  <!-- Altere o link abaixo para a URL exata da sua imagem de capa/preview -->
   <meta property="og:image" content="https://traphorde6-ui.github.io/TechStore-/banner-preview.jpg" />
   <meta property="og:image:secure_url" content="https://traphorde6-ui.github.io/TechStore-/banner-preview.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -26,14 +25,12 @@
   <meta name="twitter:description" content="As melhores ofertas em Eletrônicos, Perfumes, Moda e Calçados com desconto exclusivo no PIX!">
   <meta name="twitter:image" content="https://traphorde6-ui.github.io/TechStore-/banner-preview.jpg">
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS via CDN (Restaura o design visual imediatamente) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- QR Code JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Canvas Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- Scripts adiados (defer) para não bloquear o carregamento da tela -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
   
   <style>
     @keyframes fadeInUp {
@@ -716,7 +713,7 @@
         <div class="group bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 animate-fade-in-up">
           <div class="relative cursor-pointer overflow-hidden bg-white aspect-square flex items-center justify-center p-3" onclick="openProductModal(${product.id})">
             ${product.oldPrice ? `<span class="absolute top-3 left-3 bg-red-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-full shadow-md z-10">OFERTA</span>` : ''}
-            <img src="${product.image}" alt="${product.title}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+            <img src="${product.image}" loading="lazy" alt="${product.title}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
           </div>
           <div class="p-5 flex flex-col flex-1">
             <h4 onclick="openProductModal(${product.id})" class="text-base font-bold text-gray-800 mb-1 hover:text-indigo-600 cursor-pointer transition-colors line-clamp-2">${product.title}</h4>
@@ -757,7 +754,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="flex flex-col gap-3">
             <div class="relative overflow-hidden rounded-2xl border border-gray-100 bg-white group aspect-square flex items-center justify-center p-2">
-              <img id="modal-main-image" src="${gallery[0].url}" class="w-full h-full object-contain transition-all duration-300">
+              <img id="modal-main-image" src="${gallery[0].url}" loading="lazy" class="w-full h-full object-contain transition-all duration-300">
               
               ${gallery.length > 1 ? `
                 <button onclick="changeSlide(-1, ${product.id})" aria-label="Imagem anterior" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-md backdrop-blur-sm transition-all">
@@ -777,7 +774,7 @@
               <div class="flex gap-2 overflow-x-auto pb-1">
                 ${gallery.map((img, idx) => `
                   <button onclick="setSlide(${idx}, ${product.id})" id="thumb-${idx}" aria-label="Selecionar imagem da cor ${img.color}" class="thumb-btn border-2 ${idx === 0 ? 'border-indigo-600 scale-105' : 'border-transparent'} rounded-xl overflow-hidden flex-shrink-0 transition-all bg-white p-1">
-                    <img src="${img.url}" class="w-14 h-14 object-contain">
+                    <img src="${img.url}" loading="lazy" class="w-14 h-14 object-contain">
                   </button>
                 `).join('')}
               </div>
@@ -917,7 +914,6 @@
         });
       }
 
-      confetti({ particleCount: 30, spread: 60, origin: { y: 0.5 } });
       closeProductModal();
       updateCart();
     }
@@ -1155,8 +1151,6 @@
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.M
       });
-
-      confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
     }
 
     function closeCheckout() {
